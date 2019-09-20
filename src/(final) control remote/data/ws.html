@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+ 
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+   <style>
+     html {
+      font-family: Arial;
+      display: inline-block;
+      margin: 0px auto;
+      text-align: center;
+     }
+     h2 { font-size: 3.0rem; }
+     p { font-size: 3.0rem; }
+     .units { font-size: 1.2rem; }
+     .dht-labels{
+       font-size: 2.5rem;
+       vertical-align:middle;
+       border-radius: 0.5rem;
+       background-color: white;
+       border: 0.5px solid black;
+     }
+   </style>
+      <script type = "text/javascript">
+ 
+         var ws = null;
+ 
+         function OpenWebsocket() {
+ 
+               ws = new WebSocket("ws://172.28.183.230/test");
+ 
+               ws.onopen = function() {
+                    document.getElementById("sendButtonOn").disabled = false;
+		    document.getElementById("sendButtonOff").disabled = false;
+                    document.getElementById("connectButton").disabled = true;
+                    document.getElementById("disconnectButton").disabled = false;
+               };
+ 
+               ws.onclose = function() {
+                    document.getElementById("sendButtonOn").disabled = true;
+		    document.getElementById("sendButtonOff").disabled = true;
+                    document.getElementById("connectButton").disabled = false;
+                    document.getElementById("disconnectButton").disabled = true;
+ 
+                    alert("Connection closed");
+               };
+         }
+ 
+         function CloseWebsocket(){
+            ws.close();
+         }
+ 
+         function SendDataON(){
+            var textToSend = "ON";
+            ws.send(textToSend);
+         }
+
+	 function SendDataOFF(){
+            var textToSend = "OFF";
+            ws.send(textToSend);
+         }
+ 
+      </script>
+ 
+   </head>
+ 
+   <body>
+      <h2>Room Air Conditioner Controller</h2>
+      <div>
+         <button class="dht-labels" onclick = "OpenWebsocket()" id = "connectButton">CONNECT</button>
+         <button class="dht-labels" onclick = "CloseWebsocket()" disabled = "true" id = "disconnectButton">DISCONNECT</button>
+         <button class="dht-labels" onclick = "SendDataON()"  disabled = "true" id = "sendButtonOn">ON</button>
+	 <button class="dht-labels" onclick = "SendDataOFF()"  disabled = "true" id = "sendButtonOff">OFF</button>
+      </div>
+   </body>
+</html>
