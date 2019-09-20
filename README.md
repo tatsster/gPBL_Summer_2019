@@ -12,9 +12,12 @@ TL,DR: Our final result of project is webapp_email/webapp_email.ino
 
 - [Components](#components)
 - [Install Hardware Info](#install-hardware-info)
+- [Libraries](#libraries)
+- [Tools](#tools)
 - [Setup SMTP Server](#setup-smtp-server)
 - [Code Explain](#code-explain)
 - [Setup Mobile App](#setup-mobile-app)
+- [Contribution](#contribution)
 
 ## Components
 
@@ -53,3 +56,26 @@ Because these are not by default Arduino board so we must install board informat
 - Enter esp32 in search form
 - Install **esp8266 by ESP8266 Community**
 - Select Board manager **Generic ESP8266 Module**
+
+## Libraries
+
+Because of connect to local host and get info from sensor, so we need install some libraries:
+- DHT
+- Adafruit_Sensor
+- ESPAsyncTCP
+- ESPAsyncWebServer
+
+## Tools
+
+In final version, we need to control signal from remote that means ESPr must able to receive info. That why you should copy **tools/ESP32FS** to **tools** folder in Arduino IDE.
+
+## Contribution
+
+Group member:
+- Haoran Wang
+- Pham Trong Nhan
+- Yuya Urushibata
+- Huynh Ngoc Thien
+- Kouhei Ogawa
+- Nguyen Nguyen Phuong
+- Riko Suzuki
